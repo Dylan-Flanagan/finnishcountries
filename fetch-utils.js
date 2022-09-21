@@ -20,7 +20,7 @@ export async function getCountries(name, continent) {
     if (continent) {
         // > Part C: add query for continent
     }
-
+    // > Part A: `await` the query and return the response
     const response = await query;
 
     return response;
@@ -29,4 +29,6 @@ export async function getCountries(name, continent) {
 export async function getContinents() {
     // > Part B: await client query from country_continents
     // (select all columns) and return response
+    const response = await client.from('country_continents').select();
+    return response;
 }
