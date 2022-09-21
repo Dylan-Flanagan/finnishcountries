@@ -1,6 +1,7 @@
 /* Imports */
 // > Part A: Import `getCountries` from fetch-utils.js
 // > Part B: Import `getContinents` from fetch-utils.js
+import { getContinents, getCountries } from './fetch-utils.js';
 import { renderContinentOption, renderCountry } from './render-utils.js';
 
 /* Get DOM Elements */
@@ -17,6 +18,7 @@ let countries = [];
 
 /* Events */
 window.addEventListener('load', async () => {
+    findCountries();
     // > Part A: call findCountries (with no arguments)
 
     // > Part B: await the call to get continents to get the response
@@ -31,6 +33,7 @@ window.addEventListener('load', async () => {
 });
 
 async function findCountries(name, continent) {
+    const response = await getCountries();
     // > Part A: Call the service function that gets the countries
 
     // > Part C: Add the name and continent arguments to getCountries
@@ -38,6 +41,8 @@ async function findCountries(name, continent) {
     // > Part A: Assign to state the :
     //      - error,
     //      - data (to the countries variable)
+    error = response.error;
+    countries = response.data;
 
     // > Part D: Assign to state the:
     //      - count (of db records)
@@ -59,6 +64,8 @@ function displayCountries() {
     countryList.innerHTML = '';
 
     for (const country of countries) {
+        const countryEl = renderCountry(country);
+        countryList.append(countryEl);
         // > Part A: render and append to list
     }
 }
