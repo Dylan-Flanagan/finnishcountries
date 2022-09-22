@@ -4,7 +4,6 @@ const SUPABASE_KEY =
 const client = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
 export async function getCountries(name, continent) {
-    // > Part D: Add a second argument to `select(` to
     // return an exact db count of matching records
 
     // > Part A: Implement the client query from countries:
@@ -12,6 +11,7 @@ export async function getCountries(name, continent) {
     //   2. order by country name
     //   3. limit to 100 countries
     let query = client.from('countries').select('*', { count: 'exact' }).order('name').limit(100);
+    // > Part D: ^^^ Add a second argument to `select` (Step D committed early)= { count: 'exact' }).order('name').limit(100);
 
     if (name) {
         // > Part C: add query for name
